@@ -1,4 +1,3 @@
-# cse-151a-project
 # New York AirBnB Price Predictions
 Since the number of listings hit their peak just before the pandemic, prospective hosts have been seeing fewer and fewer bookings as the market has been oversaturated. Combined with the slowing economy, hosts have had a more difficult time pricing their units. Our model aims to help inform these homeowners’ decisions by analyzing the overall market and deciding what a fair price for their unit would be to base their choice off of. 
 
