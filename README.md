@@ -17,5 +17,5 @@ For our first model we choose to use Linear Regression. Our linear regression mo
 One possible model we can implement next is a neural network. Trying several hidden layers with different numbers of units (nodes) per layer and different kinds of activation functions would help find the best model for predicting the price, which would be more  accurate than the current linear, polynomial, or logistic regression models. 
 Another model that we can implement is a support vector machine. We observed that our MSE was extremely high for a linear regression model which is a relatively simple model. A more complex model like SVM will try to find a hyperplane to model the distribution which could potentially be more accurate than a simple linear regression. 
 
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H?usp=sharing)
 
