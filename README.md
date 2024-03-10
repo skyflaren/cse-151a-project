@@ -26,6 +26,13 @@ One model that we considered using is Random Forest Regressor because our data h
 
 Our second model, the Sequential Neural Network performed similarly to our first model, Linear Regression. This is likely due to the simplicity of the model as although our model had more depth and layers to it, it is fairly simple compared to other neural network models. Somethings that can be done to possibly improve our model is to do some feature expansion and hyper parameter tuning as there were many activation functions and layers that we could have experimented with.
 
+## [Model 3: Random Forest Regression(insert link here)]
+For our final model we decided to use a Random Forest Regressor. Similar to theo ther models, our existing dataframe and columns were sufficient, and we are continuing to use mean squared error as our loss function. Unlike our first two models, our third model performed better than those two in training, testing, and validation MSE, with a score of 1510, 8158, TODO. With these MSE's in mind, we observe that our model is overfitting because the training score is much lower compared to the testing score and MAYBE VALIDATION? In other words, our model would lie on the right side of the fitting graph, being a complex and overfitting graph.
+
+In this model, we did not perform any hyper parameter tuning and any feature expansion. However, we did have K-fold cross validaiton, with 10 folds repeated 5 times. The results were TODO.
+
+Our third model, the Random Forest Regression performed much better compared to our first two models, Sequential Neural Network and Linear Regression. This is likely due to how the model is much more complex than our first two models as well as the Random Forest Regression model being able to better handle our data. Somethings that can be done to possibly improveo ur model is to do some feature expansion and hyper parameter tuning in order to make our model overfit our data less and make the scores between training, testing, and validation more consistent and closer to 0.
+
 ### Final Notebook:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H?usp=sharing)
