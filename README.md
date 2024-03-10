@@ -18,7 +18,7 @@ One possible model we can implement next is a neural network. Trying several hid
 Another model that we can implement is a support vector machine. We observed that our MSE was extremely high for a linear regression model which is a relatively simple model. A more complex model like SVM will try to find a hyperplane to model the distribution which could potentially be more accurate than a simple linear regression.
 
 ## Model 2: Sequential Neural Network
-For our second model we chose to use a Sequential Neural Network. Similar to our first model, our second model did not perform as well with a MSE for our training, testing, and validation data being: TODO. With those MSE's in mind, our model is on the left side of the fitting graph similar to our first model, meaning our model was still fairly simple and underfitted our data.
+For our second model we chose to use a Sequential Neural Network. Similar to our first model, our second model did not perform as well with a MSE for our training, testing, and validation data being: 10134, 10454, 10235. With those MSE's in mind, our model is on the left side of the fitting graph similar to our first model, meaning our model was still fairly simple and underfitted our data.
 
 In this model, we did not perform any hyper parameter tuning and any feature expansion. However, we did have K-fold cross validation, with 10 folds repeated 5 times. The results were still similar to our first model in that the MSE was roughly around 10000.
 
