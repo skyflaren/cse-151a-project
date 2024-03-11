@@ -34,6 +34,5 @@ In this model, we did not perform any hyper parameter tuning and any feature exp
 Our third model, the Random Forest Regression performed much better compared to our first two models, Sequential Neural Network and Linear Regression. This is likely due to how the model is much more complex than our first two models and thus able to better handle our data. Somethings that can be done to possibly improve our model is to do some feature expansion and hyper parameter tuning in order to make our model overfit our data less and make the scores between training, testing, and validation more consistent and closer to 0.
 
 ### Final Notebook:
-
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H?usp=sharing)
 
