@@ -33,6 +33,118 @@ In this model, we did not perform any hyper parameter tuning and any feature exp
 
 Our third model, the Random Forest Regression performed much better compared to our first two models, Sequential Neural Network and Linear Regression. This is likely due to how the model is much more complex than our first two models and thus able to better handle our data. Somethings that can be done to possibly improve our model is to do some feature expansion and hyper parameter tuning in order to make our model overfit our data less and make the scores between training, testing, and validation more consistent and closer to 0.
 
-### Final Notebook:
+---
+
+## Final Notebook:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H?usp=sharing)
 
+## Final Writeup
+### Introduction
+When traveling to new areas, people use Airbnb as one of their main methods to find accommodation. However, identifying and setting good and bad prices of Airbnbs in certain areas can be difficult. Therefore, the goal of our CSE 151A Group Project is to predict the price per night of Airbnb listings in New York, which is able to help both the travelers and the homeowners to set and find an appropriate price for Airbnb’s.
+
+### Dataset
+In order to predict the price per night of an Airbnb in New York, we will train three models on data from the `New York Airbnb Open Data 2024` dataset. This dataset includes various metrics from Airbnbs in New York City including neighborhood, room type, ratings, and location data. For this particular problem, we will be predicting a continuous value, price, based on various Airbnb features. The features included in our models are:
+- `minimum_nights`: the minimum amount of nights a customer must stay at the Airbnb
+- `number_of_reviews`: the total number of times the Airbnb has been reviewed
+- `reviews_per_month`: the amount of times the Airbnb gets reviewed each month
+- `calculated_host_listings_count`: the number of Airbnb listings that a host owns
+- `rating`: the rating that a listing has, from 1 star to 5 stars
+- `bedrooms`: the number of bedrooms available
+- `beds`: the number of beds available
+- `baths`: the number of bathrooms in the Airbnb
+- `neighbourhood_group`: the name of the borough of New York that the listing is in
+- `room_type`: the type of property that the listing is, such as a private room, apartment, house, etc.
+
+### Methods
+#### Data Exploration
+In the data exploration process, we looked at the relationships between each feature to give ourselves a vague idea of which features can be closely related to price and which features cannot. We explored the data by looking at the heatmap, pairplot, and type of data each feature had. We identified the categorical and numerical features and how they would help in predicting Airbnb prices. We also found that numerous features weren’t ideal in predicting Airbnb prices, such as `id`, `host_id`, `host_name`, `last_review`, etc. Additionally, we found Airbnb-price outliers that price values at $100,000. After this process, we initially decided that the three models that we would use are regression, Decision Trees, and K-Nearest Neighbors. However, the last two models would be changes to Neural Network and Random Forest because we realized that those are more appropriate models for the price prediction.
+
+#### Data Preprocessing
+After exploring our raw data, several of the features required cleaning. First, we examined the ‘ratings’ columns. For any Airbnbs that had no ratings, we imputed those values with the median rating. Next, we one-hot encoded both the `neighborhood_group` column and the `room_type` column in order to represent these distinct categorical features. Additionally, we created a separate column for any studios and removed them from the `bedroom` column, reasoning that since studios don't have a bedroom, they are their own unique situation. We also eliminated any Airbnb listings with a price per night of over $1000. Finally, we normalized all of our features using a MinMaxScaler which also preserved the shape of our original distribution.
+
+#### Model 1: Regression
+- [Linear Regression](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H#scrollTo=x0l9IybfOdcb)
+- [Polynomial Regression](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H#scrollTo=vlLf2gjQPPag)
+For the regression models, we used all of the chosen features to predict the Airbnb prices. We performed a linear regression on the dataset as well as polynomial regressions with degrees ranging from 2 - 4. However, ultimately we decided to only include degree 4 into the notebook. To look at the accuracy of our regression models, we used mean-squared error (MSE).
+
+#### [Model 2: Neural Networks](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H#scrollTo=qA7ON3QSub6I)
+We created a `Sequential` model and added 6 dense layers. For the input layer, we used 128 neurons (units) with linear activation function. We added 4 more layers with 64, 32, 16, and 8 neurons (units) respectively with linear activation function. Finally, we added the output layer with 1 neuron (units). After building a model, we compiled this model with `adam` optimizer, which is well known for gradient-based optimization, and used mean squared error for the loss function.
+
+#### [Model 3: Random Forest](https://colab.research.google.com/drive/1jjwC8OQ4t2foMpVOL1rNyTsa6Zegyr1H#scrollTo=GV66h11LR_tT)
+We initialized RandomForestRegressor with the following parameters - `n_estimators=100`, `random_state=0`, `oob_score=True`. We decided to use 100 trees in the random forest, and used 0 for the random state in order to make the results reproducible. We also used `oob_score = True` parameter to allow using out-of-bag samples to estimate the score of the model.
+
+### Results
+- Model 1: Regression
+  - Linear Regression
+    - Training MSE:  10760.671655411572
+    - Validation MSE: 9347.664355231143
+    - Testing MSE:  10208.994525547445
+![Actual vs. Predicted Values for Linear Regression](figures/linear.png)
+
+  - Polynomial Regression
+    - Degree = 4, Training MSE: 7513.000506446608
+    - Degree = 4, Testing MSE: 4.496952953456398e+19
+    - Validation MSE: 2426.8657522951507
+
+- Model 2: Neural Networks
+  - Train MSE: 10895.838031603987
+  - Validation MSE: 10788.70052483614
+  - Test MSE: 10348.186649912388
+
+- Model 3: Random Forest
+  - Train MSE: 1510.2902779701878
+  - Validation MSE: 9327.000612329275
+  - Test MSE: 8158.552072786882
+
+### Discussion
+Our best performing model was our Random Forest regressor. As expected, our simpler regression models, linear and polynomial regression, performed very poorly. However, we expected the Neural Networks to achieve a better performance but they resulted in similar MSEs to the simple models.
+
+For linear and polynomial regressions, we included all features in our model, including the categorical features, which could be a potential reason why our regression models performed so poorly. The high training and testing MSEs indicated that these models were not a good fit to capture the underlying intricacies in our data. For linear regression, the validation MSE was slightly lower than the training and testing MSE, suggesting that the model might generalize better to unseen data than to the training data. However, our polynomial regression model had the opposite problem of severely overfitting. The testing MSE was astronomically higher than the training MSE.
+
+Since neural networks are powerful, nonlinear models, we expected them to perform well on our task. However, the results were not as expected. Both the training and testing MSE values were quite high, suggesting that the neural network model might suffer from overfitting or insufficient training. Further hyperparameter tuning and possibly increasing the complexity of the network architecture might improve its performance.
+
+The Random Forest model demonstrated the best performance among the models tested. The training MSE was significantly lower than the testing MSE, indicating overfitting. However, the testing MSE was relatively low compared to other models, suggesting that random forest effectively captured the underlying patterns in the data and generalized well to unseen data.
+
+### Conclusion
+In this group project, we used Linear and Polynomial Regression, Neural Networks, and Random Forest to predict the New York Airbnb prices. We think that this prediction can be very useful to both travelers and house owners to identify the most appropriate prices given their house’s/apartment’s basic information.
+
+For the data we had 10 features, including 2 categorical features and 8 numerical features. However, seeing that we have a relatively high MSE for all three models, we can question if all of the features are useful to predict the Airbnb prices. We can ask the question if any of the features in the dataset provide extra noise that make the prediction less accurate. Therefore, next time it would be useful to add an additional layer of data preprocessing where we add a criteria to see which features would be the most important factors in setting an Airbnb price. We could determine if we need to add more features or eliminate redundant/unnecessary features.
+
+Additionally, as we were learning new models as the project continued, we gained more knowledge on which models were more appropriate. This led us to change the models that we had to use midway through the project, which caused a shift in direction and expectation in the project. Next time, since we know which models are the best candidates to use, we’ll be able to implement quicker, and we can use the additional time to make our models produce more accurate results.
+
+### Collaboration
+Christopher Han
+- **Title**: Virtuoso
+- **Contributions**: Abstract writeup, testing + experimenting + giving feedback for model 1, final writeup
+
+Desmond Vu
+- **Title**: Adventurer
+- **Contributions**: Contributed with the writing portions for milestone 4 and 5
+
+Hannah Coates
+- **Title**: Defender
+- **Contributions**: Assisted in implementing model 3 (Neural network), helped with write-ups for both models and preprocessing, and helped organize meetings
+
+Jenny Mar
+- **Title**: Consul
+- **Contributions**: Implemented Models 1 (Linear Regression) and 3 (Neural Network), developed pre-processing plots, and helped organize meeting times
+
+Justin Lu
+- **Title**: Mediator 
+- **Contributions**: Organized meetings & facilitate decisions, enhanced/edited README and github, wrote portions of data preprocessing
+
+Kyla Park
+- **Title**: Logistician
+- **Contributions**: Contributed with writing milestone write ups and final write up
+
+Megan Huynh
+- **Title**: Campaigner
+- **Contributions**: Write the reports and initialize code notebooks with to-dos
+
+Nitya Pillai
+- **Title**: Defender
+- **Contributions**: Assisted in implementing model 1 and implemented model 3, helped with writeups for both models and helped organize meetings
+
+Rachel Chau
+- **Title**: Advocate
+- **Contributions**: Helped with building and evaluating Models 1 and 3. Wrote up portions of milestone write ups and final writeup
