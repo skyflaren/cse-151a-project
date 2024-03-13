@@ -123,11 +123,11 @@ Desmond Vu
 
 Hannah Coates
 - **Title**: Defender
-- **Contributions**: Assisted in implementing model 3 (Neural network), helped with write-ups for both models and preprocessing, and helped organize meetings
+- **Contributions**: Assisted in implementing model 2 (Neural Network), helped with write-ups for both models and preprocessing, and helped organize meetings
 
 Jenny Mar
 - **Title**: Consul
-- **Contributions**: Implemented Models 1 (Linear Regression) and 3 (Neural Network), developed pre-processing plots, and helped organize meeting times
+- **Contributions**: Implemented Models 1 (Linear Regression) and 2 (Neural Network), developed pre-processing plots, and helped organize meeting times
 
 Justin Lu
 - **Title**: Mediator 
@@ -143,7 +143,7 @@ Megan Huynh
 
 Nitya Pillai
 - **Title**: Defender
-- **Contributions**: Assisted in implementing model 1 and implemented model 3, helped with writeups for both models and helped organize meetings
+- **Contributions**: Assisted in implementing model 1 and implemented model 2, helped with writeups for both models and helped organize meetings
 
 Rachel Chau
 - **Title**: Advocate
